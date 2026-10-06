@@ -1,0 +1,1259 @@
+/* =========================================================
+   DIE STEEL PRODUCT PAGE
+========================================================= */
+
+
+/* =========================================================
+   NAVBAR BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand .logo {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.brand .logo-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand .logo-name strong {
+    display: block;
+    color: var(--navy);
+    font-size: 21px;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.brand .logo-name span {
+    display: block;
+    color: #8fa1ac;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   PRODUCTS DROPDOWN
+========================================================= */
+
+.nav-dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 31px 0;
+}
+
+.dropdown-main::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--orange);
+
+    transition: width 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-main::after {
+    width: 100%;
+}
+
+.dropdown-main i {
+    font-size: 9px;
+
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-main i {
+    transform: rotate(180deg);
+}
+
+
+/* Dropdown box */
+
+.dropdown-menu {
+    position: absolute;
+
+    top: calc(100% - 1px);
+    left: 50%;
+
+    transform: translateX(-50%) translateY(10px);
+
+    width: 230px;
+
+    background: #ffffff;
+
+    border-top: 3px solid var(--orange);
+    border-radius: 0 0 7px 7px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
+
+    padding: 8px 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 9999;
+}
+
+
+/* Show dropdown */
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* Dropdown links */
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 18px;
+
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+
+/* Remove normal navbar underline */
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+
+/* Dropdown hover */
+
+.dropdown-menu a:hover {
+    background: #f3f7fa;
+
+    color: var(--orange);
+
+    padding-left: 23px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.die-hero {
+    position: relative;
+
+    min-height: 390px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 18, 29, 0.96),
+            rgba(3, 18, 29, 0.78),
+            rgba(3, 18, 29, 0.45)
+        ),
+        url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+.die-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    padding: 80px 0;
+}
+
+
+.die-hero .section-label {
+    color: var(--orange);
+
+    margin-bottom: 15px;
+}
+
+
+.die-hero h1 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 52px;
+    line-height: 1.1;
+
+    color: white;
+
+    margin-bottom: 16px;
+}
+
+
+.die-hero p {
+    max-width: 580px;
+
+    color: #dbe5ea;
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.die-hero .breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    font-size: 11px;
+
+    color: #aebdc6;
+}
+
+
+.die-hero .breadcrumb a {
+    color: #aebdc6;
+
+    text-decoration: none;
+
+    transition: color 0.25s ease;
+}
+
+
+.die-hero .breadcrumb a:hover {
+    color: var(--orange);
+}
+
+
+.die-hero .breadcrumb i {
+    color: var(--orange);
+
+    font-size: 9px;
+}
+
+
+.die-hero .breadcrumb span {
+    color: #aebdc6;
+}
+
+
+/* =========================================================
+   CONTACT STRIP
+========================================================= */
+
+.die-contact {
+    position: relative;
+
+    z-index: 5;
+
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+
+.die-contact-inner {
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+}
+
+
+.die-contact-title {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.die-contact-title > i {
+    color: var(--orange);
+
+    font-size: 27px;
+}
+
+
+.die-contact-title span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.die-contact-title strong {
+    display: block;
+
+    font-size: 15px;
+
+    margin-top: 2px;
+}
+
+
+.die-phone {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.die-phone i {
+    color: var(--orange);
+}
+
+
+.die-phone a {
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: color 0.25s ease;
+}
+
+
+.die-phone a:hover {
+    color: var(--orange);
+}
+
+
+.phone-or {
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.die-content {
+    background: var(--light);
+
+    padding: 75px 0;
+}
+
+
+.die-product {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 38px;
+
+    margin-bottom: 35px;
+
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.045);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.die-product:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+}
+
+
+.die-product:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PRODUCT HEADING
+========================================================= */
+
+.die-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 30px;
+}
+
+
+.die-number {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    background: var(--orange);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+.die-heading .section-label {
+    margin-bottom: 5px;
+
+    font-size: 10px;
+}
+
+
+.die-heading h2 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 30px;
+    line-height: 1.1;
+
+    color: var(--navy);
+}
+
+
+/* =========================================================
+   DESCRIPTION LAYOUT
+========================================================= */
+
+.die-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px;
+
+    gap: 45px;
+
+    align-items: start;
+}
+
+
+.die-description h3 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 20px;
+
+    color: var(--navy);
+
+    margin-bottom: 15px;
+}
+
+
+.die-description p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.85;
+}
+
+
+.die-description p + p {
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   SIDE CARD
+========================================================= */
+
+.die-side-card {
+    background: var(--navy);
+
+    color: white;
+
+    padding: 28px;
+
+    border-radius: 8px;
+
+    border-top: 4px solid var(--orange);
+}
+
+
+.die-side-card i {
+    color: var(--orange);
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+
+.die-side-card span {
+    display: block;
+
+    color: #9eb0bb;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 5px;
+}
+
+
+.die-side-card strong {
+    display: block;
+
+    font-family: Manrope, sans-serif;
+
+    font-size: 27px;
+}
+
+
+.die-side-card p {
+    color: #c4d0d6;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   APPLICATIONS
+========================================================= */
+
+.applications {
+    margin-top: 28px;
+}
+
+
+.applications h4 {
+    font-size: 13px;
+
+    color: var(--navy);
+
+    margin-bottom: 13px;
+}
+
+
+.application-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+.application-list span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    background: var(--light);
+
+    border: 1px solid var(--border);
+
+    padding: 8px 11px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    color: var(--text);
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.application-list span:hover {
+    border-color: var(--orange);
+
+    background: #fff7f1;
+}
+
+
+.application-list i {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   HARDNESS
+========================================================= */
+
+.hardness-box {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 25px;
+
+    padding: 12px 18px;
+
+    background: var(--light);
+
+    border: 1px solid var(--border);
+
+    border-left: 3px solid var(--orange);
+
+    border-radius: 5px;
+}
+
+
+.hardness-box > i {
+    color: var(--orange);
+
+    font-size: 20px;
+}
+
+
+.hardness-box div {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.hardness-box span {
+    color: var(--muted);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+
+.hardness-box strong {
+    color: var(--navy);
+
+    font-size: 18px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   CHEMICAL COMPOSITION
+========================================================= */
+
+.composition-section {
+    margin-top: 35px;
+}
+
+
+.composition-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+.composition-heading span {
+    font-size: 9px;
+
+    color: var(--orange);
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.composition-heading h3 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 18px;
+
+    color: var(--navy);
+
+    margin-top: 4px;
+}
+
+
+.composition-heading > i {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 106, 22, 0.1);
+
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+}
+
+
+.die-product table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 800px;
+}
+
+
+.die-product th {
+    background: var(--navy);
+
+    color: white;
+
+    padding: 12px 10px;
+
+    text-align: left;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.die-product td {
+    padding: 13px 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 10px;
+
+    color: var(--text);
+
+    white-space: nowrap;
+}
+
+
+.die-product tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.die-product tbody tr {
+    transition: background 0.2s ease;
+}
+
+
+.die-product tbody tr:hover {
+    background: #f7fafc;
+}
+
+
+.die-product td:first-child {
+    color: var(--orange);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.die-cta {
+    background: var(--navy);
+
+    color: white;
+}
+
+
+.die-cta-inner {
+    min-height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.die-cta span {
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.die-cta h2 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 28px;
+
+    margin: 7px 0;
+}
+
+
+.die-cta p {
+    color: #b8c6ce;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FOOTER OVERRIDES
+========================================================= */
+
+.site-footer {
+    padding-top: 55px;
+}
+
+
+.site-footer .container {
+    padding-left: 20px;
+
+    padding-right: 20px;
+}
+
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.35fr
+        1fr
+        1fr
+        0.9fr;
+
+    gap: 35px;
+
+    padding-bottom: 45px;
+}
+
+
+.footer-bottom {
+    width: 100%;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 18px 0;
+}
+
+
+.footer-bottom-content {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.footer-bottom-content p {
+    margin: 0;
+
+    color: #8094a2;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    /* Products dropdown */
+
+    .nav-dropdown {
+        width: 100%;
+
+        display: block;
+    }
+
+
+    .dropdown-main {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        justify-content: space-between;
+
+        padding: 14px 0;
+    }
+
+
+    .dropdown-main::after {
+        display: none;
+    }
+
+
+    .dropdown-menu {
+        position: static;
+
+        width: 100%;
+
+        transform: none;
+
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+
+        display: none;
+
+        border-top: none;
+
+        border-left: 2px solid var(--orange);
+
+        border-radius: 0;
+
+        box-shadow: none;
+
+        padding: 0 0 0 12px;
+    }
+
+
+    .nav-dropdown:hover .dropdown-menu {
+        transform: none;
+    }
+
+
+    #navMenu.open .dropdown-menu {
+        display: block;
+    }
+
+
+    .dropdown-menu a {
+        padding: 10px 12px;
+    }
+
+
+    .dropdown-menu a:hover {
+        padding-left: 17px;
+    }
+
+
+    /* Product content */
+
+    .die-layout {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .die-side-card {
+        max-width: 100%;
+    }
+
+
+    /* Contact */
+
+    .die-contact-inner {
+        flex-wrap: wrap;
+
+        padding: 20px 0;
+    }
+
+
+    /* Footer */
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Hero */
+
+    .die-hero {
+        min-height: 420px;
+    }
+
+
+    .die-hero-content {
+        padding: 60px 0;
+    }
+
+
+    .die-hero h1 {
+        font-size: 36px;
+    }
+
+
+    .die-hero p {
+        font-size: 12px;
+    }
+
+
+    .die-hero .breadcrumb {
+        flex-wrap: wrap;
+
+        gap: 7px;
+    }
+
+
+    /* Contact */
+
+    .die-contact-inner {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 25px 0;
+    }
+
+
+    /* Product */
+
+    .die-content {
+        padding: 50px 0;
+    }
+
+
+    .die-product {
+        padding: 22px;
+    }
+
+
+    .die-heading {
+        gap: 13px;
+    }
+
+
+    .die-number {
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    .die-heading h2 {
+        font-size: 25px;
+    }
+
+
+    .die-layout {
+        gap: 25px;
+    }
+
+
+    /* Applications */
+
+    .application-list {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .application-list span {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* Composition */
+
+    .composition-heading h3 {
+        font-size: 16px;
+    }
+
+
+    .composition-heading > i {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    /* CTA */
+
+    .die-cta-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        padding: 45px 0;
+    }
+
+
+    .die-cta h2 {
+        font-size: 25px;
+    }
+
+
+    /* Footer */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .die-hero h1 {
+        font-size: 32px;
+    }
+
+
+    .die-product {
+        padding: 18px;
+    }
+
+
+    .die-heading h2 {
+        font-size: 22px;
+    }
+
+
+    .die-side-card {
+        padding: 22px;
+    }
+
+
+    .die-cta h2 {
+        font-size: 22px;
+    }
+}

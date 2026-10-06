@@ -1,0 +1,1483 @@
+/* =========================================================
+   ALLOY STEEL PRODUCT PAGE
+========================================================= */
+
+
+/* =========================================================
+   NAVBAR BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand .logo {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.brand .logo-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand .logo-name strong {
+    display: block;
+    color: var(--navy);
+    font-size: 21px;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.brand .logo-name span {
+    display: block;
+    color: #8fa1ac;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid #e7edf1;
+}
+
+.navbar-inner {
+    min-height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+#navMenu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+#navMenu > a,
+#navMenu > .nav-dropdown > .dropdown-main {
+    position: relative;
+
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--navy);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   NAVIGATION UNDERLINE
+========================================================= */
+
+#navMenu > a::after,
+#navMenu > .nav-dropdown > .dropdown-main::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 25px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--orange);
+
+    transition: width 0.3s ease;
+}
+
+#navMenu > a:hover,
+#navMenu > .nav-dropdown:hover > .dropdown-main {
+    color: var(--orange);
+}
+
+#navMenu > a:hover::after,
+#navMenu > .nav-dropdown:hover > .dropdown-main::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+
+#navMenu > a.active {
+    color: var(--orange);
+}
+
+#navMenu > a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   PRODUCTS DROPDOWN CONTAINER
+========================================================= */
+
+.nav-dropdown {
+    position: relative;
+
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   PRODUCTS TEXT
+========================================================= */
+
+.dropdown-main {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PRODUCTS ARROW
+========================================================= */
+
+.dropdown-main i {
+    font-size: 9px;
+
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-main i {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   DROPDOWN MENU
+========================================================= */
+
+.dropdown-menu {
+    position: absolute;
+
+    top: 100%;
+    left: 50%;
+
+    width: 235px;
+
+    transform: translateX(-50%) translateY(10px);
+
+    background: #ffffff;
+
+    border: 1px solid #e3e9ed;
+    border-top: 3px solid var(--orange);
+
+    border-radius: 0 0 7px 7px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+
+    padding: 7px 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =========================================================
+   SHOW DROPDOWN ON HOVER
+========================================================= */
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(-50%) translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   DROPDOWN LINKS
+========================================================= */
+
+.dropdown-menu a {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 12px 18px;
+
+    color: var(--navy);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    border-left: 3px solid transparent;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+
+/* Remove navbar underline from dropdown links */
+
+.dropdown-menu a::after {
+    display: none !important;
+}
+
+
+/* Dropdown hover */
+
+.dropdown-menu a:hover {
+    color: var(--orange);
+
+    background: #f5f8fa;
+
+    border-left-color: var(--orange);
+
+    padding-left: 23px;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+#menuBtn {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: var(--navy);
+    color: #ffffff;
+
+    cursor: pointer;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   PRODUCT HERO
+========================================================= */
+
+.product-hero {
+    position: relative;
+
+    min-height: 390px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 18, 29, .96),
+            rgba(3, 18, 29, .78),
+            rgba(3, 18, 29, .45)
+        ),
+        url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+.product-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    padding: 80px 0;
+}
+
+
+.product-label {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--orange);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.product-label span {
+    width: 25px;
+    height: 2px;
+
+    background: var(--orange);
+}
+
+
+.product-hero h1 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 52px;
+    line-height: 1.1;
+
+    margin: 15px 0;
+}
+
+
+.product-hero p {
+    max-width: 560px;
+
+    color: #dbe5ea;
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    font-size: 11px;
+    color: #aebdc6;
+}
+
+
+.breadcrumb i {
+    color: var(--orange);
+    font-size: 9px;
+}
+
+
+.breadcrumb a:hover {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   QUICK CONTACT
+========================================================= */
+
+.product-contact {
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+.product-contact-inner {
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+}
+
+
+.product-contact-title {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.product-contact-title > i {
+    color: var(--orange);
+    font-size: 27px;
+}
+
+
+.product-contact-title span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+.product-contact-title strong {
+    display: block;
+
+    font-size: 15px;
+
+    margin-top: 2px;
+}
+
+
+.product-phone {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.product-phone i {
+    color: var(--orange);
+}
+
+
+.product-phone a {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.product-phone a:hover {
+    color: var(--orange);
+}
+
+
+.phone-or {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PRODUCT CONTENT
+========================================================= */
+
+.product-content {
+    background: #f3f7fa;
+
+    padding: 75px 0;
+}
+
+
+.steel-product {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 38px;
+
+    margin-bottom: 35px;
+
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .045);
+}
+
+
+.steel-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 30px;
+}
+
+
+.steel-number {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--orange);
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+.steel-heading h2 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 30px;
+
+    color: var(--navy);
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   DESCRIPTION + SIDE CARD
+========================================================= */
+
+.steel-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 280px;
+
+    gap: 45px;
+}
+
+
+.steel-description h3 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+
+    color: var(--navy);
+}
+
+
+.steel-description p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.85;
+}
+
+
+.steel-side-card {
+    align-self: start;
+
+    background: var(--navy);
+
+    color: white;
+
+    padding: 28px;
+
+    border-radius: 8px;
+
+    border-top: 4px solid var(--orange);
+}
+
+
+.steel-side-card i {
+    color: var(--orange);
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+
+.steel-side-card span {
+    display: block;
+
+    color: #9eb0bb;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 5px;
+}
+
+
+.steel-side-card strong {
+    display: block;
+
+    font-family: Manrope, sans-serif;
+
+    font-size: 27px;
+}
+
+
+.steel-side-card p {
+    color: #c4d0d6;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   APPLICATIONS
+========================================================= */
+
+.applications {
+    margin-top: 28px;
+}
+
+
+.applications h4 {
+    font-size: 13px;
+
+    color: var(--navy);
+
+    margin-bottom: 13px;
+}
+
+
+.application-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+.application-list span {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    background: #f3f7fa;
+
+    border: 1px solid var(--border);
+
+    padding: 8px 11px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    color: var(--text);
+}
+
+
+.application-list i {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   CHEMICAL COMPOSITION
+========================================================= */
+
+.composition-section {
+    margin-top: 35px;
+}
+
+
+.composition-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+.composition-heading span {
+    font-size: 9px;
+
+    color: var(--orange);
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.composition-heading h3 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 18px;
+
+    margin-top: 4px;
+}
+
+
+.composition-heading > i {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 106, 22, .1);
+
+    color: var(--orange);
+}
+
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+
+th {
+    background: var(--navy);
+
+    color: white;
+
+    padding: 12px 10px;
+
+    text-align: left;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+td {
+    padding: 13px 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 10px;
+
+    color: var(--text);
+
+    white-space: nowrap;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+tbody tr:hover {
+    background: #f7fafc;
+}
+
+
+td:first-child {
+    color: var(--orange);
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.product-cta {
+    background: var(--navy);
+
+    color: white;
+}
+
+
+.product-cta-inner {
+    min-height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.product-cta span {
+    color: var(--orange);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.product-cta h2 {
+    font-family: Manrope, sans-serif;
+
+    font-size: 28px;
+
+    margin: 7px 0;
+}
+
+
+.product-cta p {
+    color: #b8c6ce;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    background: var(--navy);
+
+    color: white;
+
+    padding-top: 55px;
+}
+
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.35fr
+        1fr
+        1fr
+        .9fr;
+
+    gap: 35px;
+
+    padding-bottom: 45px;
+}
+
+
+.footer-brand p {
+    max-width: 430px;
+
+    margin-top: 18px;
+
+    color: #aebdc6;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.footer-logo {
+    margin: 0;
+}
+
+
+.footer-logo .logo-box {
+    width: 72px;
+    height: 72px;
+}
+
+
+.footer-logo .logo-box img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+
+.footer-logo .logo-name strong {
+    color: white;
+
+    font-size: 21px;
+}
+
+
+.footer-logo .logo-name span {
+    color: #8fa1ac;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+}
+
+
+.footer-column h3 {
+    font-size: 17px;
+
+    margin-bottom: 25px;
+}
+
+
+.footer-contact-item {
+    display: flex;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+}
+
+
+.footer-contact-item > i {
+    color: var(--orange);
+
+    font-size: 19px;
+
+    margin-top: 3px;
+}
+
+
+.footer-contact-item h4 {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+
+.footer-contact-item p {
+    color: #c3d0d7;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.latest-posts ul {
+    list-style: none;
+}
+
+
+.latest-posts li {
+    color: #d6e0e5;
+
+    font-size: 12px;
+
+    margin-bottom: 13px;
+}
+
+
+.latest-posts li:hover {
+    color: var(--orange);
+}
+
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+
+    padding: 18px 0;
+}
+
+
+.footer-bottom-content {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.footer-bottom-content p {
+    margin: 0;
+
+    color: #8094a2;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+#backTop {
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 999;
+}
+
+
+#backTop.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+#backTop:hover {
+    background: var(--orange-dark);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .steel-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .steel-side-card {
+        max-width: 100%;
+    }
+
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .product-contact-inner {
+        flex-wrap: wrap;
+
+        padding: 20px 0;
+    }
+
+
+    /* Navbar */
+
+    #navMenu {
+        gap: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE NAVBAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .navbar-inner {
+        min-height: 75px;
+
+        padding: 0 20px;
+    }
+
+
+    /* Mobile menu button */
+
+    #menuBtn {
+        display: flex;
+
+        width: 42px;
+        height: 42px;
+
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+
+        border-radius: 5px;
+
+        background: var(--navy);
+
+        color: white;
+
+        cursor: pointer;
+
+        font-size: 18px;
+    }
+
+
+    /* Mobile navigation */
+
+    #navMenu {
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px 20px;
+
+        background: white;
+
+        border-top: 1px solid #e7edf1;
+
+        box-shadow: 0 12px 25px rgba(0, 0, 0, .08);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform: translateY(-10px);
+
+        transition:
+            opacity .25s ease,
+            visibility .25s ease,
+            transform .25s ease;
+    }
+
+
+    /* Open menu */
+
+    #navMenu.open {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+
+    /* Normal mobile links */
+
+    #navMenu > a {
+        height: 48px;
+
+        display: flex;
+
+        align-items: center;
+
+        border-bottom: 1px solid #edf1f3;
+    }
+
+
+    #navMenu > a::after {
+        display: none;
+    }
+
+
+    /* =====================================================
+       MOBILE PRODUCTS
+    ===================================================== */
+
+    .nav-dropdown {
+        width: 100%;
+
+        height: auto;
+
+        display: block;
+    }
+
+
+    .nav-dropdown .dropdown-main {
+        width: 100%;
+
+        min-height: 48px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        border-bottom: 1px solid #edf1f3;
+    }
+
+
+    .nav-dropdown .dropdown-main::after {
+        display: none;
+    }
+
+
+    /* Mobile dropdown stays visible */
+
+    .dropdown-menu {
+        position: static;
+
+        width: 100%;
+
+        transform: none;
+
+        padding: 0;
+
+        background: #f7f9fa;
+
+        border: none;
+
+        border-left: 2px solid var(--orange);
+
+        border-radius: 0;
+
+        box-shadow: none;
+
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+    }
+
+
+    /* Mobile dropdown links */
+
+    .dropdown-menu a {
+        min-height: 43px;
+
+        padding: 11px 18px;
+
+        font-size: 11px;
+
+        border-left: none;
+
+        border-bottom: 1px solid #e5eaed;
+    }
+
+
+    .dropdown-menu a:hover {
+        padding-left: 23px;
+
+        background: #eef3f6;
+    }
+
+
+    /* Don't rotate arrow on mobile */
+
+    .nav-dropdown:hover .dropdown-main i {
+        transform: none;
+    }
+
+
+    /* =====================================================
+       PRODUCT PAGE MOBILE
+    ===================================================== */
+
+    .product-hero {
+        min-height: 420px;
+    }
+
+
+    .product-hero-content {
+        padding: 60px 0;
+    }
+
+
+    .product-hero h1 {
+        font-size: 36px;
+    }
+
+
+    .product-hero p {
+        font-size: 12px;
+    }
+
+
+    .product-contact-inner {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 25px 0;
+    }
+
+
+    .steel-product {
+        padding: 22px;
+    }
+
+
+    .steel-heading h2 {
+        font-size: 25px;
+    }
+
+
+    .steel-layout {
+        gap: 25px;
+    }
+
+
+    .application-list {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .application-list span {
+        width: 100%;
+    }
+
+
+    .product-cta-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        padding: 45px 0;
+    }
+
+
+    .product-cta h2 {
+        font-size: 25px;
+    }
+
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar-inner {
+        padding: 0 15px;
+    }
+
+
+    .brand {
+        gap: 10px;
+    }
+
+
+    .brand .logo {
+        width: 55px;
+        height: 55px;
+    }
+
+
+    .brand .logo-name strong {
+        font-size: 17px;
+    }
+
+
+    .brand .logo-name span {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+
+    #navMenu {
+        padding: 8px 15px;
+    }
+
+}
