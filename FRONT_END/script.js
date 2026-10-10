@@ -246,30 +246,33 @@ if (contactForm) {
    PRODUCT CARD CLICK
 ===================================================== */
 
-const productCards =
-    document.querySelectorAll(".product-card");
+/* =====================================================
+   PRODUCT CARD CLICK — CORRECTED
+===================================================== */
 
+const productCards = document.querySelectorAll(".product-card");
 
 productCards.forEach(function (card) {
+    card.addEventListener("click", function (event) {
 
-    card.addEventListener("click", function () {
-
-        const contactSection =
-            document.getElementById("contact");
-
-        if (contactSection) {
-
-            contactSection.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
+        // Allow product links to navigate to their respective pages.
+        if (event.target.closest("a")) {
+            return;
         }
 
-    });
+        // Only scroll to the contact section when clicking
+        // a non-link area of the product card.
+        const contactSection = document.getElementById("contact");
 
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
 });
+
 
 
 /* =====================================================

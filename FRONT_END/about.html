@@ -1209,7 +1209,6 @@
 <!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
-
 <script>
 
 const menuBtn = document.getElementById("menuBtn");
@@ -1217,69 +1216,143 @@ const navMenu = document.getElementById("navMenu");
 const navbar = document.querySelector(".navbar");
 const backTop = document.getElementById("backTop");
 
-
-/* MOBILE MENU */
-
-menuBtn.addEventListener("click", () => {
-
-    navMenu.classList.toggle("open");
-
-});
+const dropdownMain = document.querySelector(".dropdown-main");
+const navDropdown = document.querySelector(".nav-dropdown");
 
 
-/* CLOSE MENU AFTER CLICK */
+/* =========================
+   MOBILE MENU
+========================= */
+
+if (menuBtn && navMenu) {
+
+    menuBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+    });
+
+}
+
+
+/* =========================
+   MOBILE PRODUCTS DROPDOWN
+========================= */
+
+if (dropdownMain && navDropdown) {
+
+    dropdownMain.addEventListener("click", () => {
+
+        /* Only activate this behavior on mobile */
+        if (window.innerWidth <= 900) {
+
+            navDropdown.classList.toggle("open");
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CLOSE MOBILE MENU
+   AFTER CLICKING A LINK
+========================= */
 
 document.querySelectorAll("#navMenu a").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        navMenu.classList.remove("open");
+        if (navMenu) {
+            navMenu.classList.remove("open");
+        }
+
+        if (navDropdown) {
+            navDropdown.classList.remove("open");
+        }
 
     });
 
 });
 
 
-/* NAVBAR SCROLL EFFECT */
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 30) {
+    if (navbar) {
 
-        navbar.classList.add("scrolled");
+        if (window.scrollY > 30) {
 
-    } else {
+            navbar.classList.add("scrolled");
 
-        navbar.classList.remove("scrolled");
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
 
     }
 
 
-    /* BACK TO TOP */
+    /* =========================
+       BACK TO TOP VISIBILITY
+    ========================= */
 
-    if (window.scrollY > 400) {
+    if (backTop) {
 
-        backTop.classList.add("show");
+        if (window.scrollY > 400) {
 
-    } else {
+            backTop.classList.add("show");
 
-        backTop.classList.remove("show");
+        } else {
+
+            backTop.classList.remove("show");
+
+        }
 
     }
 
 });
 
 
-/* BACK TO TOP */
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
 
-backTop.addEventListener("click", () => {
+if (backTop) {
 
-    window.scrollTo({
+    backTop.addEventListener("click", () => {
 
-        top: 0,
-        behavior: "smooth"
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
     });
+
+}
+
+
+/* =========================
+   RESET MOBILE MENU
+   WHEN SWITCHING TO DESKTOP
+========================= */
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 900) {
+
+        if (navMenu) {
+            navMenu.classList.remove("open");
+        }
+
+        if (navDropdown) {
+            navDropdown.classList.remove("open");
+        }
+
+    }
 
 });
 

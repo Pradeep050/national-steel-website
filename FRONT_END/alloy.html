@@ -1126,51 +1126,143 @@
 </button>
 
 
-
 <script>
 
 const menuBtn = document.getElementById("menuBtn");
 const navMenu = document.getElementById("navMenu");
+const navbar = document.querySelector(".navbar");
+const backTop = document.getElementById("backTop");
+
+const dropdownMain = document.querySelector(".dropdown-main");
+const navDropdown = document.querySelector(".nav-dropdown");
+
+
+/* =========================
+   MOBILE MENU
+========================= */
 
 if (menuBtn && navMenu) {
 
     menuBtn.addEventListener("click", () => {
-
         navMenu.classList.toggle("open");
+    });
+
+}
+
+
+/* =========================
+   MOBILE PRODUCTS DROPDOWN
+========================= */
+
+if (dropdownMain && navDropdown) {
+
+    dropdownMain.addEventListener("click", () => {
+
+        if (window.innerWidth <= 768) {
+            navDropdown.classList.toggle("open");
+        }
 
     });
 
 }
 
 
-const backTop = document.getElementById("backTop");
+/* =========================
+   CLOSE MOBILE MENU
+   AFTER CLICKING A LINK
+========================= */
+
+document.querySelectorAll("#navMenu a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (navMenu) {
+            navMenu.classList.remove("open");
+        }
+
+        if (navDropdown) {
+            navDropdown.classList.remove("open");
+        }
+
+    });
+
+});
+
+
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
+    if (navbar) {
 
-        backTop.classList.add("show");
+        if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
 
-    } else {
+    }
 
-        backTop.classList.remove("show");
+
+    /* =========================
+       BACK TO TOP
+    ========================= */
+
+    if (backTop) {
+
+        if (window.scrollY > 400) {
+            backTop.classList.add("show");
+        } else {
+            backTop.classList.remove("show");
+        }
 
     }
 
 });
 
 
-backTop.addEventListener("click", () => {
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+if (backTop) {
+
+    backTop.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     });
+
+}
+
+
+/* =========================
+   RESET MOBILE MENU
+   WHEN SWITCHING TO DESKTOP
+========================= */
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 768) {
+
+        if (navMenu) {
+            navMenu.classList.remove("open");
+        }
+
+        if (navDropdown) {
+            navDropdown.classList.remove("open");
+        }
+
+    }
 
 });
 
 </script>
-
 
 </body>
 

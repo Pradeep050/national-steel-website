@@ -1297,56 +1297,60 @@ td:first-child {
     }
 
 
-    /* Mobile dropdown stays visible */
+    /* =====================================================
+   MOBILE PRODUCTS DROPDOWN
+===================================================== */
 
-    .dropdown-menu {
-        position: static;
+.dropdown-menu {
+    position: static;
 
-        width: 100%;
+    width: 100%;
 
-        transform: none;
+    transform: none;
 
-        padding: 0;
+    padding: 0;
 
-        background: #f7f9fa;
+    background: #f7f9fa;
 
-        border: none;
+    border: none;
 
-        border-left: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
 
-        border-radius: 0;
+    border-radius: 0;
 
-        box-shadow: none;
+    box-shadow: none;
 
-        opacity: 1;
+    /* Closed by default */
+    display: none;
 
-        visibility: visible;
+    opacity: 1;
 
-        pointer-events: auto;
-    }
+    visibility: visible;
 
-
-    /* Mobile dropdown links */
-
-    .dropdown-menu a {
-        min-height: 43px;
-
-        padding: 11px 18px;
-
-        font-size: 11px;
-
-        border-left: none;
-
-        border-bottom: 1px solid #e5eaed;
-    }
+    pointer-events: auto;
+}
 
 
-    .dropdown-menu a:hover {
-        padding-left: 23px;
+/* Open Products dropdown */
 
-        background: #eef3f6;
-    }
+.nav-dropdown.open .dropdown-menu {
+    display: block;
+}.dropdown-menu a {
+    min-height: 43px;
 
+    padding: 11px 18px;
+
+    font-size: 11px;
+
+    border-left: none;
+
+    border-bottom: 1px solid #e5eaed;
+}
+
+.dropdown-menu a:hover {
+    padding-left: 23px;
+    background: #eef3f6;
+}
 
     /* Don't rotate arrow on mobile */
 
