@@ -1,254 +1,293 @@
+
 /* =====================================================
-   MOBILE MENU
+   NATIONAL STEEL AGENCIES
+   Main JavaScript
+===================================================== */
+
+
+/* =====================================================
+   1. MOBILE NAVIGATION
 ===================================================== */
 
 const menuBtn = document.getElementById("menuBtn");
 const navMenu = document.getElementById("navMenu");
 
 if (menuBtn && navMenu) {
-
     menuBtn.addEventListener("click", function () {
-
-        navMenu.classList.toggle("open");
-
+        const isOpen = navMenu.classList.toggle("open");
         const icon = menuBtn.querySelector("i");
 
+        menuBtn.setAttribute("aria-expanded", String(isOpen));
+
         if (icon) {
-
-            if (navMenu.classList.contains("open")) {
-
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-
-            } else {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
+            icon.classList.toggle("fa-bars", !isOpen);
+            icon.classList.toggle("fa-xmark", isOpen);
         }
-
     });
+}
 
+
+/* Close mobile navigation after selecting a link */
+
+if (navMenu) {
+    navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navMenu.classList.remove("open");
+
+            if (menuBtn) {
+                menuBtn.setAttribute("aria-expanded", "false");
+
+                const icon = menuBtn.querySelector("i");
+
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
+            }
+        });
+    });
 }
 
 
 /* =====================================================
-   CLOSE MOBILE MENU
+   2. NAVBAR SCROLL EFFECT
 ===================================================== */
 
-const navLinks = document.querySelectorAll("#navMenu a");
+const navbar = document.querySelector(".navbar");
 
-navLinks.forEach(function (link) {
+function updateNavbar() {
+    if (!navbar) return;
 
-    link.addEventListener("click", function () {
+    navbar.classList.toggle("scrolled", window.scrollY > 30);
+}
 
-        if (navMenu) {
-            navMenu.classList.remove("open");
-        }
-
-        if (menuBtn) {
-
-            const icon = menuBtn.querySelector("i");
-
-            if (icon) {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
-        }
-
-    });
-
-});
+window.addEventListener("scroll", updateNavbar, { passive: true });
+updateNavbar();
 
 
 /* =====================================================
-   ACTIVE NAVIGATION
+   3. ACTIVE NAVIGATION LINK
 ===================================================== */
 
-const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll("#navMenu a");
+const pageSections = document.querySelectorAll(
+    "section[id]:not(#home)"
+);
 
 function updateActiveNavigation() {
+    let currentSection = "home";
 
-    let currentSection = "";
-
-    sections.forEach(function (section) {
-
-        const sectionTop =
-            section.offsetTop - 150;
-
-        if (window.scrollY >= sectionTop) {
-
-            currentSection =
-                section.getAttribute("id");
-
+    pageSections.forEach(function (section) {
+        if (window.scrollY >= section.offsetTop - 160) {
+            currentSection = section.id;
         }
-
     });
-
 
     navLinks.forEach(function (link) {
+        const href = link.getAttribute("href");
 
-        link.classList.remove("active");
-
-        if (
-            currentSection &&
-            link.getAttribute("href") === "#" + currentSection
-        ) {
-
-            link.classList.add("active");
-
-        }
-
+        link.classList.toggle(
+            "active",
+            href === "#" + currentSection
+        );
     });
-
 }
 
 window.addEventListener(
     "scroll",
-    updateActiveNavigation
+    updateActiveNavigation,
+    { passive: true }
 );
 
 
 /* =====================================================
-   BACK TO TOP
+   4. HERO SLIDER
+   Automatic slides and clickable dots
 ===================================================== */
 
-const backTop =
-    document.getElementById("backTop");
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroDots = document.querySelectorAll(".hero-dots .dot");
 
-if (backTop) {
+let currentHeroSlide = 0;
+let heroTimer = null;
+const heroInterval = 5000;
 
-    window.addEventListener("scroll", function () {
 
-        if (window.scrollY > 500) {
+/* Display a particular slide */
 
-            backTop.classList.add("show");
+function showHeroSlide(index) {
+    if (heroSlides.length === 0) return;
 
-        } else {
+    currentHeroSlide =
+        (index + heroSlides.length) % heroSlides.length;
 
-            backTop.classList.remove("show");
-
-        }
-
+    heroSlides.forEach(function (slide, slideIndex) {
+        slide.classList.toggle(
+            "active",
+            slideIndex === currentHeroSlide
+        );
     });
 
+    heroDots.forEach(function (dot, dotIndex) {
+        dot.classList.toggle(
+            "active",
+            dotIndex === currentHeroSlide
+        );
 
-    backTop.addEventListener("click", function () {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
+        dot.setAttribute(
+            "aria-pressed",
+            String(dotIndex === currentHeroSlide)
+        );
     });
+}
 
+
+/* Show the next slide */
+
+function nextHeroSlide() {
+    showHeroSlide(currentHeroSlide + 1);
+}
+
+
+/* Start automatic sliding */
+
+function startHeroTimer() {
+    if (heroSlides.length <= 1) return;
+
+    clearInterval(heroTimer);
+
+    heroTimer = setInterval(function () {
+        nextHeroSlide();
+    }, heroInterval);
+}
+
+
+/* Restart timer after manual navigation */
+
+function restartHeroTimer() {
+    clearInterval(heroTimer);
+    startHeroTimer();
+}
+
+
+/* Clickable slider dots */
+
+heroDots.forEach(function (dot, index) {
+    dot.addEventListener("click", function () {
+        showHeroSlide(index);
+        restartHeroTimer();
+    });
+});
+
+
+/* Initialize slider */
+
+if (heroSlides.length > 0) {
+    showHeroSlide(0);
+    startHeroTimer();
 }
 
 
 /* =====================================================
-   CONTACT FORM
+   5. MOBILE HERO SWIPE
 ===================================================== */
 
-const contactForm =
-    document.getElementById("contactForm");
+const heroSlider = document.querySelector(".hero");
 
-const formMessage =
-    document.getElementById("formMessage");
+let touchStartX = 0;
+let touchEndX = 0;
 
-
-if (contactForm) {
-
-    contactForm.addEventListener(
-        "submit",
+if (heroSlider && heroSlides.length > 1) {
+    heroSlider.addEventListener(
+        "touchstart",
         function (event) {
-
-            event.preventDefault();
-
-
-            const nameElement =
-                document.getElementById("name");
-
-            const phoneElement =
-                document.getElementById("phone");
-
-            const emailElement =
-                document.getElementById("email");
-
-            const messageElement =
-                document.getElementById("message");
-
-
-            const name =
-                nameElement
-                    ? nameElement.value.trim()
-                    : "";
-
-            const phone =
-                phoneElement
-                    ? phoneElement.value.trim()
-                    : "";
-
-            const email =
-                emailElement
-                    ? emailElement.value.trim()
-                    : "";
-
-            const message =
-                messageElement
-                    ? messageElement.value.trim()
-                    : "";
-
-
-            if (
-                name === "" ||
-                phone === "" ||
-                email === "" ||
-                message === ""
-            ) {
-
-                if (formMessage) {
-
-                    formMessage.textContent =
-                        "Please fill all required fields.";
-
-                }
-
-                return;
-
-            }
-
-
-            if (formMessage) {
-
-                formMessage.textContent =
-                    "Thank you! Your enquiry has been submitted.";
-
-            }
-
-
-            contactForm.reset();
-
-        }
+            touchStartX = event.changedTouches[0].screenX;
+        },
+        { passive: true }
     );
 
+    heroSlider.addEventListener(
+        "touchend",
+        function (event) {
+            touchEndX = event.changedTouches[0].screenX;
+
+            const distance = touchStartX - touchEndX;
+
+            if (Math.abs(distance) < 50) return;
+
+            if (distance > 0) {
+                nextHeroSlide();
+            } else {
+                showHeroSlide(currentHeroSlide - 1);
+            }
+
+            restartHeroTimer();
+        },
+        { passive: true }
+    );
 }
+
+
+/* =====================================================
+   6. BACK TO TOP BUTTON
+===================================================== */
+
+const backTop = document.getElementById("backTop");
+
+function updateBackTop() {
+    if (!backTop) return;
+
+    backTop.classList.toggle("show", window.scrollY > 500);
+}
+
+if (backTop) {
+    window.addEventListener(
+        "scroll",
+        updateBackTop,
+        { passive: true }
+    );
+
+    backTop.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    updateBackTop();
+}
+
+
+/* =====================================================
+   7. CONTACT FORM
+===================================================== */
+
+const contactForm = document.getElementById("contactForm");
+const formMessage = document.getElementById("formMessage");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
+            return;
+        }
+
+        if (formMessage) {
+            formMessage.textContent =
+                "Your form is valid. Email or database submission must be connected to a backend.";
+        }
+    });
+}
+
+
 
 
 /* =====================================================
    PRODUCT CARD CLICK
 ===================================================== */
 
-/* =====================================================
-   PRODUCT CARD CLICK — CORRECTED
-===================================================== */
 
 const productCards = document.querySelectorAll(".product-card");
 
